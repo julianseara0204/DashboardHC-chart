@@ -1,0 +1,54 @@
+<!-- -->
+<ion-content padding class="animated fadeIn login auth-page">
+  <div class="login-content">
+    <p text-center ion-text color="light">Reset Password</p>
+    <!-- Logo -->
+    <div padding-horizontal   text-center class="animated fadeInDown logo">
+      <div class="logo" ></div>
+
+      <div class="head_top_logo"><img src="assets/imgs/dashboard-logo.png" style=""></div>
+
+    </div>
+
+    <!-- Login form -->
+    <form class="list-form">
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="mail" item-start  style="color: #FFFFFF"></ion-icon>
+          <!--<ion-icon name="repeat" item-start  style="color: #FFFFFF"></ion-icon>-->
+          <span style="color: #FFFFFF;font-weight: 100;font-size: 1.4rem;">Email</span>
+        </ion-label>
+        <ion-input type="email"></ion-input>
+      </ion-item>
+
+
+    </form>
+
+
+    <div style="    padding: 0 1.2rem;">
+      <button ion-button icon-start block style="background-color: #4dd0E1;    margin-top: 60%;    height: 4.6rem;" tappable (click)="reset()">
+        Reset
+      </button>
+
+
+    </div>
+
+  </div>
+</ion-content>
+
+<style>
+  ion-content{
+    background-image: linear-gradient(to bottom right, #24c4e3, #0e808f);
+  }
+  .item-md {
+    background-color: transparent;
+  }
+  .logo{
+    padding-top: 24px !important;
+    padding-bottom: 16px;
+  }
+  ion-item {
+    padding: 0 1.2rem;
+  }
+
+</style>

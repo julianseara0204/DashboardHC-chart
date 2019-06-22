@@ -1,0 +1,80 @@
+<!-- -->
+<ion-content padding class="animated fadeIn login auth-page">
+  <div class="login-content">
+<p text-center ion-text color="light">Sign In</p>
+    <!-- Logo -->
+    <div padding-horizontal   text-center class="animated fadeInDown logo">
+      <div class="logo" ></div>
+
+          <div class="head_top_logo"><img src="assets/imgs/dashboard-logo.png" style=""></div>
+
+    </div>
+
+    <!-- Login form -->
+    <form class="list-form">
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="person" item-start  style="color: #FFFFFF"></ion-icon>
+            <span style="color: #FFFFFF;font-weight: 100;font-size: 1.4rem;">User Name</span>
+        </ion-label>
+        <ion-input type="email"></ion-input>
+      </ion-item>
+
+      <ion-item style="">
+        <ion-label floating>
+          <ion-icon name="key" item-start  style="color: #FFFFFF"></ion-icon>
+            <span style="color: #FFFFFF;font-weight: 100;font-size: 1.4rem;">Password</span>
+        </ion-label>
+        <ion-input type="password"></ion-input>
+      </ion-item>
+    </form>
+
+   
+    <div style="    padding: 0 1.2rem;">
+      <button ion-button icon-start block style="background-color: #4dd0E1;    margin-top: 26%;    height: 4.6rem;" tappable (click)="login()">
+        <ion-icon name="log-in"></ion-icon>
+        Sign In
+      </button>
+
+   
+    </div>
+
+
+    <!-- Other links -->
+    <div text-center margin-top>
+        <span ion-text style="color: rgba(234, 226, 226, 0.5);" tappable >Forget Password?  <span ion-text color="light" (click)="forget()">Reset</span></span>
+    </div>
+
+  </div>
+</ion-content>
+
+<style>
+    ion-content{
+        background-image: linear-gradient(to bottom right, #24c4e3, #0e808f);
+    }
+.item-md {
+    background-color: transparent;
+}
+    .logo{
+        padding-top: 24px !important;
+        padding-bottom: 16px;
+    }
+    ion-item {
+        padding: 0 1.2rem;
+    }
+    .item-input-has-focus .label-md[stacked],
+    .input-has-focus .label-md[stacked],
+    .item-input-has-focus .label-md[floating],
+    .input-has-focus .label-md[floating]
+    {
+        color: #3df5d6 !important;
+    }
+    .ionlabel {
+        width: 1%;
+        white-space: nowrap;
+        padding-left: 16px;
+        color:#999;
+        font-size: 16px;
+        font-weight: 400;
+    }
+</style>

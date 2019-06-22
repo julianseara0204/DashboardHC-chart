@@ -1,0 +1,38 @@
+<!--Side Menu with avatar-->
+<ion-menu [content]="content" id="menu-avatar">
+    <ion-content>
+        <div #header>
+            <ion-row style="align-items:center;">
+                <ion-col col-3>
+
+                </ion-col>
+                <ion-col col-6>
+                    <img class="user-avatar round" src="http://www.precision-spine.com/wp-content/uploads/2015/09/person-icon.png"
+                    />
+                </ion-col>
+                <ion-col col-3>
+
+                </ion-col>
+            </ion-row>
+            <ion-row style="justify-content: center;">
+                <h3>Manoj</h3>
+            </ion-row>
+        </div>
+        <ion-list>
+            <button ion-item (click)="openPage('HomePage')" menuToggle>
+                Home
+            </button>
+            <button ion-item (click)="openPage(friendsPage)" menuToggle>
+               Smoothies
+            </button>
+            <button ion-item (click)="openPage(eventsPage)" menuToggle>
+               My Order
+            </button>
+            <button ion-item (click)="openPage('LoginPage')" menuToggle>
+               Sign Out
+            </button>
+        </ion-list>
+    </ion-content>
+</ion-menu>
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
