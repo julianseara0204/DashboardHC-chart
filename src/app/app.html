@@ -7,32 +7,68 @@
 
                 </ion-col>
                 <ion-col col-6>
-                    <img class="user-avatar round" src="http://www.precision-spine.com/wp-content/uploads/2015/09/person-icon.png"
-                    />
+                    <!--<img class="user-avatar round" src="http://www.precision-spine.com/wp-content/uploads/2015/09/person-icon.png"-->
+                    <!--/>-->
+                    <div id="social">
+                        <a class="facebookBtn smGlobalBtn" href="#" >{{this.sortname}}</a>
+                    </div>
                 </ion-col>
                 <ion-col col-3>
 
                 </ion-col>
             </ion-row>
             <ion-row style="justify-content: center;">
-                <h3>Manoj</h3>
+                <h3 style="">{{this.name}}</h3>
             </ion-row>
         </div>
-        <ion-list>
-            <button ion-item (click)="openPage('HomePage')" menuToggle>
-                Home
+        <ion-list >
+            <div *ngFor="let item of this.dashboards">
+            <button ion-item (click)="openPage(item.dashboardId)" menuToggle>
+                {{item.name}}
             </button>
-            <button ion-item (click)="openPage(friendsPage)" menuToggle>
-               Smoothies
-            </button>
-            <button ion-item (click)="openPage(eventsPage)" menuToggle>
-               My Order
-            </button>
-            <button ion-item (click)="openPage('LoginPage')" menuToggle>
-               Sign Out
+            </div>
+            <button ion-item (click)="logout('LoginPage')" menuToggle>
+                Sign Out
             </button>
         </ion-list>
     </ion-content>
 </ion-menu>
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
 <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+<style>
+    #social {
+        margin: 20px 10px;
+        text-align: center;
+    }
+
+    .smGlobalBtn { /* global button class */
+        display: inline-block;
+        position: relative;
+        cursor: pointer;
+        width: 70px;
+        height: 70px;
+        /*border:2px solid #ddd; !* add border to the buttons *!*/
+        /*box-shadow: 0 2px 2px #999;*/
+        padding: 0px;
+        text-decoration: none;
+        text-align: center;
+        color: #ffffff;
+        font-size: 25px;
+        font-weight: normal;
+        line-height: 2.5em;
+        border-radius: 50%;
+        -moz-border-radius:50%;
+        -webkit-border-radius:50%;
+    }
+
+    /* facebook button class*/
+    .facebookBtn{
+        background: #4dd0e1;;
+    }
+
+    .facebookBtn:before{ /* use :before to add the relevant icons */
+        font-family: "FontAwesome";
+        content: "\f09a"; /* add facebook icon */
+    }
+
+</style>

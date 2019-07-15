@@ -25711,10 +25711,12 @@ ion-navbar.toolbar {
   padding: .5em;
 }
 
-#menu-avatar h3,
 #menu-avatar .label {
-  color: #333;
-  font-weight: bold;
+  color: #9fb0b9;
+}
+
+#menu-avatar h3 {
+  color: #4dd0e1;
 }
 
 #menu-avatar .item {
@@ -25737,7 +25739,6 @@ ion-navbar.toolbar {
 }
 
 #menu-material .menu-header .name {
-  font-weight: 500;
   margin-bottom: 3px;
 }
 
@@ -25759,6 +25760,29 @@ ion-navbar.toolbar {
 
 #menu-material ion-icon {
   color: #4dd0e1;
+}
+
+.loading-md .loading-wrapper {
+  border-radius: 2px;
+  max-width: 280px;
+  max-height: 90%;
+  color: rgba(0, 0, 0, 0.5);
+  background: #ffffff !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  padding: 24px;
+}
+
+ion-backdrop.backdrop-no-tappable {
+  background: #ffffff !important;
+}
+
+.custom-loading {
+  background: #FFFFFF !important;
+}
+
+.loading-content h3 {
+  text-align: center;
 }
 
 page-home .ios page-home .scroll-content, page-home .md page-home .scroll-content {

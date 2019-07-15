@@ -16,7 +16,7 @@
 // automatically applied to the <body> element in the app.
 
 
-  // Sidemenu with avatar
+// Sidemenu with avatar
 #menu-avatar {
   .icon-badge {
     top: 0px;
@@ -32,17 +32,21 @@
   .user-avatar {
     padding: .5em;
   }
-  h3,
+
   .label {
-    color: #333;
-    font-weight: bold;
+    color: #9fb0b9;
+
+  }
+  h3
+  {
+    color: #4dd0e1;
   }
   .item {
     background: transparent;
   }
   ion-content {
     //background: linear-gradient(48deg, rgba(157, 72, 173, 0.8) 0%, rgba(157, 72, 173, 0.86) 28%, rgba(0, 168, 168, 0.98) 93%, rgba(0, 168, 168, 1) 100%);
-  background: #FFFFFF;
+    background: #FFFFFF;
   }
   .menu-inner {
     background: #FFFFFF;
@@ -57,7 +61,7 @@
     background-size: cover;
     color: white;
     .name {
-      font-weight: 500;
+
       margin-bottom: 3px;
     }
     .e-mail {
@@ -70,7 +74,7 @@
     height: 12vh;
   }
   h3,
-  .label,
+  .label
   {
     color: #4dd0e1;
     font-weight: 400;
@@ -78,4 +82,24 @@
   ion-icon {
     color: #4dd0e1;
   }
+}
+.loading-md .loading-wrapper {
+  border-radius: 2px;
+  max-width: 280px;
+  max-height: 90%;
+  color: rgba(0, 0, 0, 0.5);
+  background: #ffffff !important;
+  -webkit-box-shadow:none !important;
+  box-shadow: none !important;
+  padding: 24px;
+}
+ion-backdrop.backdrop-no-tappable {
+  //cursor: auto;
+  background: #ffffff !important;
+}
+.custom-loading {
+  background: #FFFFFF !important;
+}
+.loading-content h3 {
+  text-align: center;
 }

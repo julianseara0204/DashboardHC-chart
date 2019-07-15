@@ -11,13 +11,13 @@
     </div>
 
     <!-- Login form -->
-    <form class="list-form">
+    <form class="list-form" #myForm="ngForm" (ngSubmit)="login()">
       <ion-item>
         <ion-label floating>
           <ion-icon name="person" item-start  style="color: #FFFFFF"></ion-icon>
             <span style="color: #FFFFFF;font-weight: 100;font-size: 1.4rem;">User Name</span>
         </ion-label>
-        <ion-input type="email"></ion-input>
+        <ion-input  type="email" name="email" id="email" [ngModelOptions]="{standalone: true}" [(ngModel)]="userData.email"></ion-input>
       </ion-item>
 
       <ion-item style="">
@@ -25,7 +25,7 @@
           <ion-icon name="key" item-start  style="color: #FFFFFF"></ion-icon>
             <span style="color: #FFFFFF;font-weight: 100;font-size: 1.4rem;">Password</span>
         </ion-label>
-        <ion-input type="password"></ion-input>
+        <ion-input type="password" name="password" [ngModelOptions]="{standalone: true}" [(ngModel)]="userData.password"></ion-input>
       </ion-item>
     </form>
 
@@ -50,7 +50,11 @@
 
 <style>
     ion-content{
-        background-image: linear-gradient(to bottom right, #24c4e3, #0e808f);
+        /*background-image: linear-gradient(to bottom right, #24c4e3, #0e808f);*/
+        /*background-image: url("assets/imgs/background.png");*/
+        background-image: url(assets/imgs/background.png);
+        background-position: center;
+        background-size: cover;
     }
 .item-md {
     background-color: transparent;
@@ -67,7 +71,8 @@
     .item-input-has-focus .label-md[floating],
     .input-has-focus .label-md[floating]
     {
-        color: #3df5d6 !important;
+        /*color: #3df5d6 !important;*/
+        border-bottom:#FFFFFF ;
     }
     .ionlabel {
         width: 1%;

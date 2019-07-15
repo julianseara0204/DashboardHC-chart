@@ -18,7 +18,7 @@
           <!--<ion-icon name="repeat" item-start  style="color: #FFFFFF"></ion-icon>-->
           <span style="color: #FFFFFF;font-weight: 100;font-size: 1.4rem;">Email</span>
         </ion-label>
-        <ion-input type="email"></ion-input>
+        <ion-input type="email" name="username" [(ngModel)]="userData.username"></ion-input>
       </ion-item>
 
 
@@ -38,7 +38,12 @@
 
 <style>
   ion-content{
-    background-image: linear-gradient(to bottom right, #24c4e3, #0e808f);
+    /*background-image: linear-gradient(to bottom right, #24c4e3, #0e808f);*/
+
+    background-image: url(assets/imgs/background.png);
+    background-position: center;
+    background-size: cover;
+
   }
   .item-md {
     background-color: transparent;

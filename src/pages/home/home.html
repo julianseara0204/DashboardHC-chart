@@ -1,53 +1,230 @@
 <!-- -->
-<ion-header style="background-color: #efefef">
-  <ion-navbar color="primary">
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title style="padding-left: 20%">
-      Dashboard
-    </ion-title>
-    <!--<ion-buttons end>-->
-      <!--<button ion-button tappable (click)="presentNotifications($event)">-->
+<ion-header >
+    <ion-navbar color="">
+        <button ion-button menuToggle (click)="load_menue1()">
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title style="padding-left: 20%">
+            {{this.dashboard.name}}
+        </ion-title>
+        <!--<ion-buttons end>-->
+        <!--<button ion-button tappable (click)="presentNotifications($event)">-->
         <!--<ion-icon name="notifications"></ion-icon>-->
-      <!--</button>-->
-      <!--<button ion-button tappable (click)="goToAccount()">-->
+        <!--</button>-->
+        <!--<button ion-button tappable (click)="goToAccount()">-->
         <!--<ion-icon name="cog"></ion-icon>-->
-      <!--</button>-->
-    <!--</ion-buttons>-->
-  </ion-navbar>
+        <!--</button>-->
+        <!--</ion-buttons>-->
+    </ion-navbar>
 </ion-header>
 
 <ion-content padding class="animated fadeIn common-bg" style="background-color: #efefef">
-    <ion-card>
-        <ion-card-header>
-            Bar Chart
-        </ion-card-header>
-        <ion-card-content>
-            <canvas #barCanvas></canvas>
-        </ion-card-content>
-    </ion-card>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <ion-list>
+        <ion-item>
+            <ion-label>Operation</ion-label>
+            <ion-select  multiple="true" [(ngModel)]="this.dashboard.operation"    cancelText="Cancel" okText="Okay!">
+                <div *ngFor="let item of this.operation">
+                    <ion-option value="{{item.id}}" [selected]="Operation == item.id">{{item.value}}</ion-option>
+                </div>
 
-    <ion-card>
-        <ion-card-header>
-            Doughnut Chart
-        </ion-card-header>
-        <ion-card-content>
-            <canvas #doughnutCanvas></canvas>
-        </ion-card-content>
-    </ion-card>
+            </ion-select>
+        </ion-item>
 
-    <ion-card>
-        <ion-card-header>
-            Line Chart
-        </ion-card-header>
-        <ion-card-content>
-            <canvas #lineCanvas></canvas>
-        </ion-card-content>
-    </ion-card>
+        <ion-item>
+            <ion-label>Time</ion-label>
+            <ion-select   multiple="false" [(ngModel)]="this.dashboard.time"   cancelText="Cancel" okText="Okay!" (ionChange)="getchartdata(this.dashboard.data)">
+                <div *ngFor="let item of this.date">
+                    <ion-option value="{{item.id}}" [selected]="this.defaultDate == this.dashboard.time">{{item.value}}</ion-option>
+                    <!--<ion-option value="{{item.id}}" [selected]="Date == item.id">{{item.value}}</ion-option>-->
+                </div>
 
-  <!--<button ion-button icon-start block no-margin color="primary" class="round" tappable (click)="doSearch()">-->
-    <!--<ion-icon name="search"></ion-icon> Search-->
-  <!--</button>-->
+            </ion-select>
+        </ion-item>
+    </ion-list >
+    <div *ngIf="this.dashboard.type === 0">
 
+        <ion-card>
+            <ion-card-header>
+                Payer Mix
+                <button ion-button item-end outline icon-center right  (click)="refresh('jE2BaWE8')" >
+
+                    <ion-icon name='refresh'></ion-icon>
+                </button>
+            </ion-card-header>
+            <ion-card-content>
+                <img class="user-avatar round" [src]="barCanvasimage"  width="300" *ngIf="barCanvasimage != null" style="    height: 287px;width: 287px" />
+
+                <canvas #barCanvas [hidden]="barCanvasimage"></canvas>
+            </ion-card-content>
+        </ion-card>
+
+        <!--<ion-card>-->
+        <!--<ion-card-header>-->
+        <!--Doughnut Chart-->
+        <!--</ion-card-header>-->
+        <!--<ion-card-content>-->
+        <!--<canvas #doughnutCanvas></canvas>-->
+        <!--</ion-card-content>-->
+        <!--</ion-card>-->
+
+        <ion-card>
+            <ion-card-header>
+                Occ Trend
+            </ion-card-header>
+            <ion-card-content>
+                <img class="user-avatar round" [src]="lineCanvasimage"  width="300" *ngIf="lineCanvasimage != null" />
+                <canvas #lineCanvas [hidden]="lineCanvasimage"></canvas>
+            </ion-card-content>
+        </ion-card>
+
+        <!--<button ion-button icon-start block no-margin color="primary" class="round" tappable (click)="doSearch()">-->
+        <!--<ion-icon name="search"></ion-icon> Search-->
+        <!--</button>-->
+        <ion-card>
+            <!--<button ion-button (click)="updateData()">Update</button>-->
+            <ion-card>
+                <ion-card-header>
+                    Census by Utilization
+                </ion-card-header>
+                <ion-card-content>
+                    <img class="user-avatar round" [src]="pieCanvasimage"  width="300" *ngIf="pieCanvasimage != null" />
+                    <canvas #pieCanvas [hidden]="pieCanvasimage"></canvas>
+                </ion-card-content>
+            </ion-card>
+        </ion-card>
+
+
+        <ion-card>
+            <ion-card-header>
+                Daily Census
+            </ion-card-header>
+            <ion-card-content style="height: 150px">
+                <img class="user-avatar round" [src]="blankValueimage"  width="300" *ngIf="blankValueimage != null" />
+                <h1 [hidden]="blankValueimage">{{blankValue}}</h1>
+            </ion-card-content>
+        </ion-card>
+        <ion-card>
+            <ion-card-header>
+                Direct Care Hours PPD
+            </ion-card-header>
+            <ion-card-content>
+                <img class="user-avatar round" [src]="lineCanvas01image"  width="300" *ngIf="lineCanvas01image != null" />
+                <canvas #lineCanvas01 [hidden]="lineCanvas01image"></canvas>
+            </ion-card-content>
+        </ion-card>
+        <ion-card>
+            <ion-card-header>
+                OT $
+            </ion-card-header>
+            <ion-card-content style="height: 150px">
+                <img class="user-avatar round" [src]="blank01Valueimage"  width="300" *ngIf="blank01Valueimage != null" />
+                <h1 [hidden]="blank01Valueimage">{{blank01Value}}</h1>
+            </ion-card-content>
+        </ion-card>
+        <ion-card>
+            <ion-card-header>
+                Skilled %
+            </ion-card-header>
+            <ion-card-content style="height: 150px">
+                <!--<canvas #blankCanvas02></canvas>-->
+                <img class="user-avatar round" [src]="blank02Valueimage"  width="300" *ngIf="blank02Valueimage != null" />
+                <h1 [hidden]="blank02Valueimage">{{blank02Value}}</h1>
+            </ion-card-content>
+        </ion-card>
+
+    </div>
+    <div *ngIf="dashboard.type === 1">
+        <ion-card >
+            <ion-card-header>
+                EBITDA 6 Mo Trend
+            </ion-card-header>
+            <ion-card-content>
+                <img class="user-avatar round" [src]="lineCanvas21image"  width="300" *ngIf="lineCanvas21image != null" />
+                <canvas #lineCanvas21 [hidden]="lineCanvas21image"></canvas>
+            </ion-card-content>
+        </ion-card>
+        <ion-card>
+            <ion-card-header>
+                Revenue Trend Chart
+            </ion-card-header>
+            <ion-card-content>
+                <img class="user-avatar round" [src]="lineCanvas2image"  width="300" *ngIf="lineCanvas2image != null" />
+                <canvas #lineCanvas2 [hidden]="lineCanvas2image"></canvas>
+            </ion-card-content>
+        </ion-card>
+        <ion-card>
+            <ion-card-header>
+                Daily Rates by Payer
+            </ion-card-header>
+            <ion-card-content>
+                <img class="user-avatar round" [src]="barCanvas2image"  width="300" *ngIf="barCanvas2image != null" />
+                <canvas #barCanvas2 [hidden]="barCanvas2image"></canvas>
+            </ion-card-content>
+        </ion-card>
+        <ion-card>
+            <ion-card-header>
+                Admissions Source
+            </ion-card-header>
+            <ion-card-content>
+                <img class="user-avatar round" [src]="pieCanvas2image"  width="300" *ngIf="pieCanvas2image != null" />
+                <canvas #pieCanvas2 [hidden]="pieCanvas2image"></canvas>
+            </ion-card-content>
+        </ion-card>
+        <ion-card>
+            <ion-card-header>
+                Bad Debt %
+            </ion-card-header>
+            <ion-card-content style="height: 150px">
+                <img class="user-avatar round" [src]="blank2Valueimage"  width="300" *ngIf="blank2Valueimage != null" />
+                <h1 [hidden]="blank2Valueimage">{{blank2Value}}</h1>
+            </ion-card-content>
+        </ion-card>
+        <ion-card >
+            <ion-card-header>
+                EBITDA Trend
+            </ion-card-header>
+            <ion-card-content>
+                <img class="user-avatar round" [src]="lineCanvas22image"  width="300" *ngIf="lineCanvas22image != null" />
+                <canvas #lineCanvas22 [hidden]="lineCanvas22image"></canvas>
+            </ion-card-content>
+        </ion-card>
+
+
+    </div>
+    <div *ngIf="dashboard.type === 2">
+        <ion-card>
+            <ion-card-header>
+                Total Aging
+            </ion-card-header>
+            <ion-card-content style="height: 150px">
+                <img class="user-avatar round" [src]="blank3Valueimage"  width="300" style=" height: 220px;"  *ngIf="blank3Valueimage != null" />
+                <h1 [hidden]="blank3Valueimage">{{blank3Value}}</h1>
+            </ion-card-content>
+        </ion-card>
+        <ion-card>
+            <ion-card-header>
+                Aging by Bucket
+            </ion-card-header>
+            <ion-card-content>
+                <img class="user-avatar round" [src]="barCanvas3image"  width="300" *ngIf="barCanvas3image != null" />
+                <canvas #barCanvas3 [hidden]="barCanvas3image"></canvas>
+            </ion-card-content>
+        </ion-card>
+        <ion-card>
+            <!--<button ion-button (click)="updateData()">Update Pie Chart Data</button>-->
+            <ion-card>
+                <ion-card-header>
+                    Skilled Cash
+                </ion-card-header>
+                <ion-card-content>
+                    <img class="user-avatar round" [src]="pieCanvas3image"  width="300" *ngIf="pieCanvas3image != null" />
+                    <canvas #pieCanvas3 [hidden]="pieCanvas3image"></canvas>
+                </ion-card-content>
+            </ion-card>
+        </ion-card>
+
+    </div>
 </ion-content>
